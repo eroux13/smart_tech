@@ -36,16 +36,49 @@ router.get("/", async (req,res) => {
                     ]
                 }
             ]
-        })
+        });
 
-        const posts = postData.map((posts) => post.get({plain: true}));
+        const posts = postData.map((posts) => posts.get({plain: true}));
 
         res.render("hompage", {
             posts,
             logged_in: req.session.logged_in
-        })
+        });
     }
     catch (err) {
         res.status(500).json(err);
     }
-})
+});
+
+// Render single post
+router.get("/posts/:id", async (req,res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include:[
+                {
+                    model: User,
+                    attributes: ["user_name"]
+                },
+                {
+                    model: Comment,
+                    attributes: ["comment_text"],
+                    include: {
+                        model: User,
+                        attributes: ["user_name"]
+                    }
+                }
+            ]
+        });
+
+        const posts = postData.get({plain: true});
+
+        res.render("post", {
+            posts,
+            logged_in: req.session.logged_in
+        });
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+});
+
