@@ -28,12 +28,10 @@ router.get("/", async (req,res) => {
                         "user_id",
                         "created_at"
                     ],
-                    include: [
-                        {
+                    include: {
                             model: User,
                             attributes: ["user_name"]
-                        }
-                    ]
+                    }
                 }
             ]
         });
