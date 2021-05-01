@@ -7,7 +7,10 @@ const withAuth = require("./../utils/auth");
 // Render dashboard if user is logged in
 router.get("/", withAuth, async (req, res) => {
     try {
-        const postData = await Post.findAll(req.session.user_id, {
+        const postData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id 
+            },
             attributes: [
                 "id",
                 "post_content",
