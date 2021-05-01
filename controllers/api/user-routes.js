@@ -68,9 +68,9 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const userData = await User.create({
-            user_name: req.body.user_name,
+            user_name: req.body.username,
             email: req.body.email,
-            password: req,body,password
+            password: req.body.password
         })
 
         req.session.save(() => {
