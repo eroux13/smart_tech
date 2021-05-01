@@ -48,7 +48,10 @@ router.get("/", async (req, res) => {
 // GET api/posts/:id
 router.get("/:id", async (req, res) => {
     try {
-        const postData = await Post.findByPk(req.params.id, {
+        const postData = await Post.findByPk({
+            where: {
+                id: req.params.id
+            },
             attributes: [
                 "id",
                 "post_content",
@@ -94,7 +97,7 @@ router.post("/", withAuth, async (req, res) => {
     try {
         const postData = await Post.create({
             title: req.body.title,
-            post_content: req.body.post_content,
+            post_content: req.body.post,
             user_id: req.session.user_id
         })
 

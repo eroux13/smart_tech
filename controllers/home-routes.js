@@ -51,7 +51,10 @@ router.get("/", async (req,res) => {
 // Render single post
 router.get("/posts/:id", async (req,res) => {
     try {
-        const postData = await Post.findByPk(req.params.id, {
+        const postData = await Post.findByPk({
+            where: {
+                id: req.params.id
+            },
             include:[
                 {
                     model: User,

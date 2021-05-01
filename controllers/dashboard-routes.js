@@ -54,7 +54,10 @@ router.get("/", withAuth, async (req, res) => {
 // Edit post route
 router.get("/edit/:id", withAuth, async (req, res) => {
     try {
-        const postData = await Post.findByPk(req.params.id, {
+        const postData = await Post.findByPk({
+            where: {
+                id: req.params.id
+            },
             attributes: [
                 "id",
                 "post_content",
@@ -103,7 +106,10 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 // Edit logged in user
 router.get("/edituser", withAuth, async (req, res) => {
     try {
-        const userData = await User.findOne(req.session.user_id, {
+        const userData = await User.findOne({
+            where: {
+                id: req.session.user_id
+            },
             attributes: {exclude: ["password"]}
         });
 
