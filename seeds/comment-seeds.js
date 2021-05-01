@@ -1,5 +1,5 @@
 // Import Comment Model
-const Post = require('./../models/Comment');
+const Comment = require('./../models/Comment');
 
 // Comment Seeds
 const commentData = 
