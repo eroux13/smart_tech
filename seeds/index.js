@@ -9,7 +9,7 @@ const chalk = require("chalk");
 const { create } = require("../models/User");
 
 // Create seeds
-const createSeeds = () => {
+const createSeeds = async () => {
     await sequelize.sync({force: true});
     console.log(chalk.bold.green("\n----- DATABASE SYNCED -----\n"));
 
