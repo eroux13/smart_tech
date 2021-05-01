@@ -1,7 +1,7 @@
 const editFormHandler = (event) => {
     event.preventDefualt();
     const id = window.location.toString().split("/")[
-        window.location.toString().split("/") - 1
+        window.location.toString().split("/").length - 1
     ];
     const title = document.querySelector("input[name='post-title']").value;
     const post = document.querySelector("textarea[name='post-content']").value;
