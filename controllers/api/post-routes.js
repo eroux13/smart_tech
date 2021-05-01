@@ -88,3 +88,20 @@ router.get("/:id", async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// POST api/posts
+router.post("/", withAuth, async (req, res) => {
+    try {
+        const postData = await Post.create({
+            title: req.body.title,
+            post_content: req.body.post_content,
+            user_id: req,body,user_id
+        })
+
+        res.json(postData);
+
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+});
