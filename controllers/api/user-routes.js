@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 // GET Route /api/users/:id
 router.get("/:id", async (req, res) => {
     try {
-        const userData = await User.findByPk({
+        const userData = await User.findOne({
             where: {
                 id: req.params.id
             },
