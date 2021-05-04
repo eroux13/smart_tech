@@ -51,7 +51,7 @@ router.get("/", async (req,res) => {
 // Render single post
 router.get("/posts/:id", async (req,res) => {
     try {
-        const postData = await Post.findByPk({
+        const postData = await Post.findOne({
             where: {
                 id: req.params.id
             },
@@ -73,7 +73,7 @@ router.get("/posts/:id", async (req,res) => {
 
         const posts = postData.get({plain: true});
 
-        res.render("post", {
+        res.render("single-post", {
             posts,
             logged_in: req.session.logged_in
         });
