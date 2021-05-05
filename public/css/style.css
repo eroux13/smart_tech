@@ -28,3 +28,17 @@ textarea {
   vertical-align: middle;
 }
 /* Dashboard Styling End */
+
+/* Single Post Styling */
+.comment {
+  margin-top: 25px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.comment:nth-child(odd) {
+  background: lightslategray;
+}
+.comment-header {
+  font-weight: bold;
+}
+/* Single Post Styling End*/
