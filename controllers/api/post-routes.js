@@ -12,9 +12,9 @@ router.get("/", async (req, res) => {
                 "id",
                 "post_content",
                 "title",
-                "created_at"
+                "createdAt"
             ],
-            order: [["created_at", "DESC"]],
+            order: [["createdAt", "DESC"]],
             include: [
                 {
                     model: User,
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                         model: User,
@@ -56,7 +56,7 @@ router.get("/:id", async (req, res) => {
                 "id",
                 "post_content",
                 "title",
-                "created_at"
+                "createdAt"
             ],
             include: [
                 {
@@ -70,7 +70,7 @@ router.get("/:id", async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                         model: User,
@@ -112,9 +112,11 @@ router.post("/", withAuth, async (req, res) => {
 // PUT api/posts/:id
 router.put("/:id", withAuth, async (req, res) => {
     try{
+        console.log(req.body)
         const postData = await Post.update(req.body, {
             where: {id: req.params.id}
         })
+        console.log(postData);
         if(!postData){
             res.status(404).json({message: "No post found!"});
             return;
@@ -141,6 +143,7 @@ router.delete("/:id", withAuth, async (req, res) => {
         res.json(postData);
     }
     catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
