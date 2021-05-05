@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
                         "id",
                         "title",
                         "post_content",
-                        "created_at"
+                        "createdAt"
                     ]
                 },
                 {
@@ -45,7 +45,7 @@ router.get("/:id", async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                         model: Post,
@@ -125,7 +125,7 @@ router.post("/login", async (req, res) => {
 router.post("/logout", withAuth, async (req, res) => {
     try {
         if(req.session.logged_in){
-            res.session.destroy(() => {
+            req.session.destroy(() => {
                 res.status(204).end();
             })
         }
@@ -134,6 +134,7 @@ router.post("/logout", withAuth, async (req, res) => {
         }
     }
     catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
