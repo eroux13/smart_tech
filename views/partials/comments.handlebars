@@ -1,12 +1,14 @@
 <div class="comments">
     {{#each this}}
     <section class="comment">
-        <div class="meta">
-            {{user.username}} on {{format_date created_at}}
+        <div class="comment-header">
+            Comment by: <em>{{user.user_name}}</em> on {{format_date createdAt}}
         </div>
+        <br>
         <div class="text">
             {{comment_text}}
         </div>
+        <br>
     </section>
     {{/each}}
 </div>
