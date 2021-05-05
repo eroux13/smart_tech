@@ -1,5 +1,5 @@
-const editFormHandler = (event) => {
-    event.preventDefualt();
+const editFormHandler = async (event) => {
+    event.preventDefault();
     let username = document.querySelector('input[name="user-name"]').value.trim();
     if(username.length) {
         username = '"username": "' + username + '"'

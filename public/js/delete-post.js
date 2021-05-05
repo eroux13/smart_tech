@@ -1,5 +1,5 @@
-const deleteFormHandler = (event) => {
-    event.preventDefualt();
+const deleteFormHandler = async (event) => {
+    event.preventDefault();
     const id = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1
     ];
