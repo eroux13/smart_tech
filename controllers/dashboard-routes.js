@@ -15,7 +15,7 @@ router.get("/", withAuth, async (req, res) => {
                 "id",
                 "post_content",
                 "title",
-                "created_at"
+                "createdAt"
             ],
             include: [
                 {
@@ -25,7 +25,7 @@ router.get("/", withAuth, async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                         model: User,
@@ -62,7 +62,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
                 "id",
                 "post_content",
                 "title",
-                "created_at"
+                "createdAt"
             ],
             include: [
                 {
@@ -72,7 +72,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                         model: User,
@@ -92,7 +92,6 @@ router.get("/edit/:id", withAuth, async (req, res) => {
         }
 
         const posts = postData.get({plain: true});
-
         res.render("edit-post", {
             posts,
             logged_in: true

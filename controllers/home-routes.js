@@ -11,9 +11,9 @@ router.get("/", async (req,res) => {
                 "id",
                 "title",
                 "post_content",
-                "created_at"
+                "createdAt"
             ],
-            order: [["created_at", "DESC"]],
+            order: [["createdAt", "DESC"]],
             include: [
                 {
                     model: User,
@@ -26,7 +26,7 @@ router.get("/", async (req,res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at"
+                        "createdAt"
                     ],
                     include: {
                             model: User,
@@ -37,7 +37,6 @@ router.get("/", async (req,res) => {
         });
 
         const posts = postData.map((posts) => posts.get({plain: true}));
-
         res.render("homepage", {
             posts,
             logged_in: req.session.logged_in
@@ -62,7 +61,7 @@ router.get("/posts/:id", async (req,res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ["comment_text"],
+                    attributes: ["comment_text", "createdAt"],
                     include: {
                         model: User,
                         attributes: ["user_name"]
@@ -72,7 +71,6 @@ router.get("/posts/:id", async (req,res) => {
         });
 
         const posts = postData.get({plain: true});
-
         res.render("single-post", {
             posts,
             logged_in: req.session.logged_in
